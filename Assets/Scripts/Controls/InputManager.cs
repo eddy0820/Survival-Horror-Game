@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     Movement movement;
     FirstPersonCamera firstPersonCamera;
     InteractionManager interactionManager;
+    InventoryManager inventoryManager;
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class InputManager : MonoBehaviour
         movement = GetComponent<Movement>();
         firstPersonCamera = GetComponentInChildren<FirstPersonCamera>();
         interactionManager = GetComponent<InteractionManager>();
+        inventoryManager = GetComponent<InventoryManager>();
 
 
         playerControls.HorizontalMovement.performed += ctx => 
@@ -31,6 +33,18 @@ public class InputManager : MonoBehaviour
 
         playerControls.Interact.performed += _ =>
             interactionManager.OnInteractPressed();
+
+        playerControls.Item1.performed += _ =>
+            inventoryManager.SwitchSlot(InventorySlots.Up);
+        playerControls.Item2.performed += _ =>
+            inventoryManager.SwitchSlot(InventorySlots.Right);
+        playerControls.Item3.performed += _ =>
+            inventoryManager.SwitchSlot(InventorySlots.Down);
+        playerControls.Item4.performed += _ =>
+            inventoryManager.SwitchSlot(InventorySlots.Left);
+
+        playerControls.UseItem.performed += _ =>
+            inventoryManager.UseItem();
     }
 
     private void Update()
