@@ -8,7 +8,7 @@ public class JumpScare : MonoBehaviour
     //public AudioSource Ghost;
     public GameObject player;
     public GameObject jump;
-    public GameObject enemy;
+    public GameObject lose;
 
     // Start is called before the first frame update
     void Start()
@@ -22,33 +22,24 @@ public class JumpScare : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnCollisionEnter(Collision collision)
     {
 
-        if(collider.CompareTag("Player"))
+        if(collision.collider.tag == "Player")
         {
             StartCoroutine (EndJump());
         }
     }
 
-    void OnTriggerExit(Collider collision)
-    {
-
-        if(collision.CompareTag("Player"))
-        {
-            Destroy(jump.gameObject);
-            Destroy(gameObject);
-        }
-    }
-
     IEnumerator EndJump()
     {
-        yield return new WaitForSeconds (1f);
-        //Ghost.Play();
+        GetComponent<MeshRenderer>().enabled = false;
         jump.SetActive(true);
         player.GetComponent<Movement>().enabled = false;
 
-        yield return new WaitForSeconds (2f);
+        yield return new WaitForSeconds (3f);
         jump.SetActive(false);
+        lose.SetActive(true);
+        Destroy(gameObject);
     }
 }
