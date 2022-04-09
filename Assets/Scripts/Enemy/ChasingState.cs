@@ -7,12 +7,16 @@ public class ChasingState : StateMachineBehaviour
 {
     NavMeshAgent agent;
     Transform player;
+    AudioSource audio;
     public float stopRange = 8;
+    public HidingSpot hidingSpots;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        audio = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
+        audio.Play();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -24,6 +28,11 @@ public class ChasingState : StateMachineBehaviour
          if (distance > stopRange)
             {
                 animator.SetBool("isChasing", false);
+            }
+
+        if (hidingSpots.inside == true)
+            {
+                animator.SetBool("isChasing", false); 
             }
     }
 
