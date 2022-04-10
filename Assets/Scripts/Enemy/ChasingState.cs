@@ -22,18 +22,22 @@ public class ChasingState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        float distance = Vector3.Distance(animator.transform.position, player.position);
-        agent.SetDestination(player.position);
+        if (hidingSpots.inside == false)
+        {
+            float distance = Vector3.Distance(animator.transform.position, player.position);
+            agent.SetDestination(player.position);
 
-         if (distance > stopRange)
-            {
-                animator.SetBool("isChasing", false);
-            }
+            if (distance > stopRange)
+                {
+                    animator.SetBool("isChasing", false);
+                }
+        }
 
-        if (hidingSpots.inside == true)
-            {
-                animator.SetBool("isChasing", false); 
-            }
+        else 
+        {
+            animator.SetBool("isChasing", false);
+        }
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

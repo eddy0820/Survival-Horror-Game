@@ -43,10 +43,10 @@ public class PatrollingState : StateMachineBehaviour
                 agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
             }
 
-            if (distance < chaseRange && hidingSpots.inside == false)
-                {
-                    animator.SetBool("isChasing", true);
-                }
+        if (distance < chaseRange && hidingSpots.inside == false)
+            {
+                animator.SetBool("isChasing", true);
+            }
     
 
     }
