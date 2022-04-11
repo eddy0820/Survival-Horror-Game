@@ -10,7 +10,6 @@ public class PatrollingState : StateMachineBehaviour
     NavMeshAgent agent;
     Transform player;
     public float chaseRange = 7;
-    public HidingSpot hidingSpots;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -24,7 +23,6 @@ public class PatrollingState : StateMachineBehaviour
         agent = animator.GetComponent<NavMeshAgent>();
         agent.SetDestination(wayPoints[0].position);
         player = GameObject.FindGameObjectWithTag("Player").transform;
-       // hidingSpots = GameObject.FindObjectOfType(typeof(HidingSpot)) as HidingSpot;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -33,7 +31,7 @@ public class PatrollingState : StateMachineBehaviour
         timer += Time.deltaTime;
         float distance = Vector3.Distance(animator.transform.position, player.position);
 
-        if (timer > 20)
+        if (timer > 10)
             {
                 animator.SetBool("isPatrolling", false);
             }
@@ -43,11 +41,10 @@ public class PatrollingState : StateMachineBehaviour
                 agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
             }
 
-        if (distance < chaseRange && hidingSpots.inside == false)
+        if (distance < chaseRange)
             {
                 animator.SetBool("isChasing", true);
             }
-    
 
     }
 

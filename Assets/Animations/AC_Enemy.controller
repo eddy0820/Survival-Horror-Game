@@ -172,8 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40487584e180898498e9ee056a7314a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopRange: 30
-  hidingSpots: {fileID: 1048374124752176685, guid: 25d214b3b5b9b414e9b19086b203aa01, type: 3}
+  stopRange: 8
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -187,14 +186,14 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
-    m_Controller: {fileID: 9100000}
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   - m_Name: isChasing
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -257,8 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7bce0901d89ee6429926ad891ec3e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRange: 20
-  hidingSpots: {fileID: 1048374124752176685, guid: 25d214b3b5b9b414e9b19086b203aa01, type: 3}
+  chaseRange: 7
 --- !u!1102 &7315094188043474357
 AnimatorState:
   serializedVersion: 6

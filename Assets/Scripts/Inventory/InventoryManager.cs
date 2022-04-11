@@ -7,15 +7,10 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] GameObject teleporterPrefab;
     [SerializeField] float teleporterCooldown;
     [ReadOnly, SerializeField] float currTeleporterCooldown = 0;
-    [ReadOnly] public InventorySlots currentlySelectedSlot;
+    [ReadOnly, SerializeField] InventorySlots currentlySelectedSlot;
     GameObject teleporterHolder = null;
     bool canThrow;
-    UIController ui;
     
-    private void Awake()
-    {
-        ui = FindObjectOfType<UIController>();
-    }
     private void Update()
     {
         if(teleporterHolder == null)
@@ -34,7 +29,6 @@ public class InventoryManager : MonoBehaviour
     public void SwitchSlot(InventorySlots slot)
     {
         currentlySelectedSlot = slot;
-        ui.SwitchSlot(currentlySelectedSlot);
     }
 
     public void UseItem()

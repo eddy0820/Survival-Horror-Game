@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] PauseMenu pauseCanvas;
     PlayerControls controls;
     PlayerControls.PlayerActions playerControls;
     Vector2 horizontalInput;
@@ -46,9 +45,6 @@ public class InputManager : MonoBehaviour
 
         playerControls.UseItem.performed += _ =>
             inventoryManager.UseItem();
-
-        playerControls.Pause.performed += _ =>
-            pauseCanvas.setPaused = true;
     }
 
     private void Update()
