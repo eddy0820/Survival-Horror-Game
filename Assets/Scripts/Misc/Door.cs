@@ -13,7 +13,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
             StartCoroutine(OpenDoor());
         }
@@ -21,7 +21,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
             StartCoroutine(CloseDoor());
         }
