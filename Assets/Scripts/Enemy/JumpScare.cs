@@ -33,7 +33,7 @@ public class JumpScare : MonoBehaviour
 
     IEnumerator EndJump()
     {
-        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
         jump.SetActive(true);
         player.GetComponent<Movement>().enabled = false;
 
