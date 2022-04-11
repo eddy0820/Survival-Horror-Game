@@ -11,6 +11,13 @@ public class InteractionManager : MonoBehaviour
     RaycastHit hit;
     bool interact;
 
+    LayerMask interactableMask;
+
+    private void Awake()
+    {
+        interactableMask = LayerMask.GetMask("HidingSpot");
+    }
+
     private void FixedUpdate()
     {
         HandleInteractions();
@@ -21,13 +28,13 @@ public class InteractionManager : MonoBehaviour
         centerOfScreen = new Vector3((Screen.width / 2), (Screen.height / 2), 0);
         rayOrigin = Camera.main.ScreenPointToRay(centerOfScreen);
 
-        if(Physics.Raycast(rayOrigin, out hit, Mathf.Infinity, LayerMask.GetMask("Item")))
+        if(Physics.Raycast(rayOrigin, out hit, Mathf.Infinity, interactableMask))
         {   
             lookingAtInteractable = true;
 
             if(interact)
             {
-                // do stuff here
+                hit.collider.GetComponentInParent<HidingSpot>().GetInHidingSpot();
                 interact = false;
                 lookingAtInteractable = false;
             }
