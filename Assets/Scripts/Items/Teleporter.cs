@@ -25,12 +25,12 @@ public class Teleporter : MonoBehaviour
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
         }
-        else
+       /** else
         {
             if(collision.collider.gameObject.layer != LayerMask.NameToLayer("Player"))
             {
                 Destroy(gameObject);
             }
-        }
+        }*/
     }
 }
